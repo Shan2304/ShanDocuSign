@@ -52,6 +52,7 @@ export default function Form() {
         setMessage(data.error || "Failed to send envelope");
       }
     } catch (error) {
+      console.error('Error details:', error);
       setMessage("An unexpected error occurred");
     } finally {
       setLoading(false);
