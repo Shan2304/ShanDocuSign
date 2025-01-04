@@ -116,6 +116,7 @@ export async function createEnvelope({ participants, signingType, base64Content 
 
         return response.data;
     } catch (error) {
+        console.error('Error details:', error);
         throw new Error('Failed to send envelope');
     }
 }
