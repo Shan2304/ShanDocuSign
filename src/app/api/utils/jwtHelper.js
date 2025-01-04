@@ -38,7 +38,7 @@ export async function getJWTToken() {
         if (error.response?.data?.error === 'consent_required') {
             console.error('Consent is required. Please grant consent using the following URL:');
             console.error(
-                `https://account-d.docusign.com/oauth/auth?response_type=code&scope=signature impersonation&client_id=${CLIENT_ID}&redirect_uri=http://localhost:3000/ds/callback`
+                `https://account.docusign.com/oauth/auth?response_type=code&scope=signature impersonation&client_id=${CLIENT_ID}&redirect_uri=http://localhost:3000/ds/callback`
             );
         }
         throw new Error('Failed to generate JWT token');
