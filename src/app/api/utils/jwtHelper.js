@@ -6,7 +6,7 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const ACCOUNT_ID = process.env.ACCOUNT_ID;
 const PRIVATE_KEY = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
 const USER_ID = process.env.USER_ID;
-const DOCUSIGN_AUTH_SERVER = 'https://account-d.docusign.com';
+const DOCUSIGN_AUTH_SERVER = 'https://account.docusign.com';
 
 // Generate a JWT for authentication
 export async function getJWTToken() {
@@ -15,9 +15,9 @@ export async function getJWTToken() {
         const jwtPayload = {
             iss: CLIENT_ID,
             sub: USER_ID,
-            aud: 'account-d.docusign.com',
+            aud: 'account.docusign.com',
             iat: currentTime,
-            exp: currentTime + 600, // Token expires in 10 minutes
+            exp: currentTime + 600, 
             scope: 'signature impersonation',
         };
 
