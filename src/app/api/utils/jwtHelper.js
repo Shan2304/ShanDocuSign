@@ -53,6 +53,7 @@ export async function getBaseURI(accessToken) {
         });
         return response.data.accounts[0].base_uri;
     } catch (error) {
+        console.error('Error details:', error);
         throw new Error('Failed to retrieve base URI');
     }
 }
