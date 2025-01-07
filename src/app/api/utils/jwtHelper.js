@@ -6,7 +6,7 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const ACCOUNT_ID = process.env.ACCOUNT_ID;
 const PRIVATE_KEY = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
 const USER_ID = process.env.USER_ID;
-const DOCUSIGN_AUTH_SERVER = 'https://account.docusign.com';
+const DOCUSIGN_AUTH_SERVER = 'https://account-d.docusign.com';
 
 // Generate a JWT for authentication
 export async function getJWTToken() {
@@ -15,9 +15,9 @@ export async function getJWTToken() {
         const jwtPayload = {
             iss: CLIENT_ID,
             sub: USER_ID,
-            aud: 'account.docusign.com',
+            aud: 'account-d.docusign.com',
             iat: currentTime,
-            exp: currentTime + 600, 
+            exp: currentTime + 600, // Token expires in 10 minutes
             scope: 'signature impersonation',
         };
 
@@ -38,7 +38,7 @@ export async function getJWTToken() {
         if (error.response?.data?.error === 'consent_required') {
             console.error('Consent is required. Please grant consent using the following URL:');
             console.error(
-                `https://account.docusign.com/oauth/auth?response_type=code&scope=signature impersonation&client_id=${CLIENT_ID}&redirect_uri=https://your-netlify-site.netlify.app/ds/callback`
+                `https://account-d.docusign.com/oauth/auth?response_type=code&scope=signature impersonation&client_id=${CLIENT_ID}&redirect_uri=http://localhost:3000/ds/callback`
             );
         }
         throw new Error('Failed to generate JWT token');
